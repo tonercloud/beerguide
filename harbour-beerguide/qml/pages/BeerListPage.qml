@@ -12,7 +12,7 @@ Page {
         model: beersmodel
         anchors.fill: parent
         header: PageHeader {
-            title: breweryid.locid
+            title: breweryid
         }
 
         PushUpMenu {

@@ -4,17 +4,19 @@ import Sailfish.Silica 1.0
 Page {
     id: brewerydetailspage
 
-    property variant breweryDetails
+    // property var breweryDetails
+    property var information
 
     function passbrewery_info(breweryid)
     {
         console.log("about to push to BeerListPage, for brewery - locid: " +
-                     breweryid.locid + " + brewery name : " + breweryDetails.locname)
+                    breweryid)
+                     // breweryid.locid + " + brewery name : " + breweryDetails.locname)
         // this is where the filtering happens to ensure that beersmodel will contain only a few rows
-        beersmodel.setFilterFixedString(breweryid.locid)
+        beersmodel.setFilterFixedString(breweryid)
         pageStack.push(Qt.resolvedUrl("BeerListPage.qml"),
                        { breweryid : breweryid });
-        console.log("breweryid contains : " + breweryid.locid + " " + breweryDetails.locname)
+        console.log("breweryid contains : " + breweryid)
     }
 
     SilicaListView {
@@ -22,7 +24,7 @@ Page {
         model: breweryInfomodel
         anchors.fill: parent
         header: PageHeader {
-            title: breweryDetails.locname // picked up from BreweryListPage
+            title: "Details of " + locname
             }
 
         delegate: BackgroundItem {
@@ -34,10 +36,11 @@ Page {
             Label {
                 id: info_field
                 width: parent.width
-                text: locfieldvalue
+                text: model.locfieldvalue
+                // text: "Locfieldid : " + locfieldid
                 font.pixelSize: Theme.fontSizeSmall
-                color: Theme.primaryColor
-                wrapMode: Text.Wrap
+                color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
+                wrapMode: Text.WordWrap
 
                 anchors {
                     left: parent.left
@@ -46,7 +49,7 @@ Page {
                 }
             }
             onClicked: {
-                passbrewery_info(model);
+                passbrewery_info(locid);
                 }
         }
     }

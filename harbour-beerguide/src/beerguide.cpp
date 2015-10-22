@@ -15,7 +15,7 @@
  * See the GNU General Public License for more details. You should have received a copy of the GNU
  * General Public License along with Beerguide. If not, see <http://www.gnu.org/licenses/>.
  *
- * Author: Chris Walker
+ * Author: Chris Walker with grateful assistance from Dmitriy Purgin
  */
 
 #ifdef QT_QML_DEBUG
@@ -94,13 +94,13 @@ int main(int argc, char *argv[])
     view->rootContext()->setContextProperty("beerinfoModel", beerinfoModelFiltered);
 
     // ************* Brewery Info Filter Data starts here
-    SqlQueryModel *breweryInfomodel = new SqlQueryModel(0);
-    breweryInfomodel->setQuery("SELECT * FROM brewery_info");
+    // start with a call to the C++ code ****************
+    SqlQueryModel *breweryInfomodel = new SqlQueryModel("SELECT * FROM brewery_info", 0);
 
     // this is where we fetch all the data
     while (breweryInfomodel->canFetchMore())
         breweryInfomodel->fetchMore();
-
+    //create a QSortFilterProxyModel instance
     QSortFilterProxyModel* breweryInfoModelFiltered = new QSortFilterProxyModel(0);
 
     // set existing model as a source for filtering proxy
