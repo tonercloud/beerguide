@@ -95,7 +95,9 @@ int main(int argc, char *argv[])
 
     // ************* Brewery Info Filter Data starts here
     // start with a call to the C++ code ****************
-    SqlQueryModel *breweryInfomodel = new SqlQueryModel("SELECT * FROM brewery_info", 0);
+    SqlQueryModel *breweryInfomodel = new SqlQueryModel(0);
+    breweryInfomodel->setQuery("select brewery_info.locid, breweries.locname, brewery_info.locfieldid, loc_fields.locfieldname, brewery_info.locfieldvalue from brewery_info left join breweries on breweries.locid = brewery_info.locid left join loc_fields on loc_fields.locfieldid = brewery_info.locfieldid");
+    // breweryInfomodel->setQuery("SELECT * FROM brewery_info");
 
     // this is where we fetch all the data
     while (breweryInfomodel->canFetchMore())

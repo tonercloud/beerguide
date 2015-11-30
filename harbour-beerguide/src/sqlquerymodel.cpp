@@ -2,10 +2,10 @@
 #include <QSqlRecord>
 #include <QSqlField>
 
-SqlQueryModel::SqlQueryModel(QObject *parent) :
- QSqlQueryModel(parent)
-{
-}
+// SqlQueryModel::SqlQueryModel(QObject *parent) :
+// QSqlQueryModel(parent)
+// {
+// }
 
 void SqlQueryModel::setQuery(const QString &query, const QSqlDatabase &db)
 {

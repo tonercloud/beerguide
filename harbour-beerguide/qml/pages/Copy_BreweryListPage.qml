@@ -14,8 +14,10 @@ Page {
 
         // this is where filtering happens. breweryInfomodel will contain only a few rows
         breweryInfomodel.setFilterFixedString(breweryDetails.locid);
+        // breweryInfomodel.filter("locid", breweryDetails.locid);
 
-        pageStack.push(Qt.createComponent("BreweryDetailsPage.qml"), { breweryDetails : breweryDetails.locname });
+                pageStack.push(Qt.resolvedUrl("BreweryDetailsPage.qml"),
+                               { breweryDetails : breweryDetails });
     }
 
     SilicaListView {
@@ -61,7 +63,7 @@ Page {
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
             // onClicked: passbreweryDetails(locid)
-            onClicked: passbreweryDetails(model)
+            onClicked: pageStack.push(Qt.createComponent("BreweryDetailsPage.qml"), { information : locid + locname });
         }
         VerticalScrollDecorator {}
     }

@@ -5,14 +5,14 @@ import Sailfish.Silica 1.0
 Page {
     id: beerlistpage
     
-    property variant breweryid
+    property var breweryname
 
     SilicaListView {
         id: beerlistView
         model: beersmodel
         anchors.fill: parent
         header: PageHeader {
-            title: breweryid
+            title: breweryname
         }
 
         PushUpMenu {
@@ -58,5 +58,6 @@ Page {
                 // showBeerDetails(index);
             // }
         }
+        VerticalScrollDecorator {}
     }
 }

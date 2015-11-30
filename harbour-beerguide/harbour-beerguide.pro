@@ -34,6 +34,9 @@ OTHER_FILES += qml/harbour-beerguide.qml \
     qml/pages/BeerListPage.qml \
     qml/pages/BreweryDetailsPage.qml \
     qml/pages/BreweryListPage.qml \
+    qml/AdaptiveSearch/AdaptiveSearch.qml \
+    qml/AdaptiveSearch/AdaptiveSearchPanel.qml \
+    qml/AdaptiveSearch/PanelButton.qml \
     rpm/harbour-beerguide.changes.in \
     rpm/harbour-beerguide.spec \
     rpm/harbour-beerguide.yaml \

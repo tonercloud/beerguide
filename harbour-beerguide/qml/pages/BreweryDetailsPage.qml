@@ -4,8 +4,7 @@ import Sailfish.Silica 1.0
 Page {
     id: brewerydetailspage
 
-    // property var breweryDetails
-    property var information
+    property var breweryDetails
 
     function passbrewery_info(breweryid)
     {
@@ -15,8 +14,8 @@ Page {
         // this is where the filtering happens to ensure that beersmodel will contain only a few rows
         beersmodel.setFilterFixedString(breweryid)
         pageStack.push(Qt.resolvedUrl("BeerListPage.qml"),
-                       { breweryid : breweryid });
-        console.log("breweryid contains : " + breweryid)
+                       { breweryname : breweryDetails });
+        console.log("breweryid contains : " + breweryid + " and breweryname contains : " + breweryDetails)
     }
 
     SilicaListView {
@@ -24,7 +23,7 @@ Page {
         model: breweryInfomodel
         anchors.fill: parent
         header: PageHeader {
-            title: "Details of " + locname
+            title: "Details of " + breweryDetails
             }
 
         delegate: BackgroundItem {
@@ -36,10 +35,10 @@ Page {
             Label {
                 id: info_field
                 width: parent.width
-                text: model.locfieldvalue
-                // text: "Locfieldid : " + locfieldid
+                // text: locfieldid + " : " + locfieldvalue
+                text: locfieldvalue
                 font.pixelSize: Theme.fontSizeSmall
-                color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
+                color: Theme.primaryColor
                 wrapMode: Text.WordWrap
 
                 anchors {
